@@ -16,16 +16,16 @@ export default function Register() {
     e.preventDefault()
     const {name, email, password} = data
     try {
-      const {data} = await axios.post('./register', {
+      const {data} = await axios.post('/register', {
         name, email, password
       })
       if(data.error){
         toast.error(data.error)
       }
       else{
-        setData({})
+        setData({}) //to reset the input fields
         toast.success('Login successful! Welcome')
-        navigate('./login')
+        navigate('/login')
       }
     } catch (error) {
       console.log(error)
