@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const { hashPassword, comparePassword } = require('../helpers/auth')
+const jwt = require('jsonwebtoken')
 
 const test = (req, res) => {
     res.json('test is working')
@@ -62,8 +63,13 @@ const loginUser = async (req, res) =>{
         if(match){
             res.json('passwords match')
         }
+        if(!match){
+            res.json({
+                error: "Passwords do not match"
+            })
+        }
     } catch (error) {
-        console.log("loginUser function", error)
+        console.log("loginUser function catch message: ", error)
     }
 }
 
